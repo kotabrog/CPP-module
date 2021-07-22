@@ -43,7 +43,8 @@ std::string PhoneBook::input_one(std::string put_string) const
     while (str.empty())
     {
         std::cout << put_string << std::endl;
-        std::getline(std::cin, str);
+        if (std::getline(std::cin, str).eof())
+            std::exit(0);
     }
     return str;
 }
@@ -86,7 +87,8 @@ void PhoneBook::search_command() const
         std::string str;
 
         std::cout << "Enter an index" << std::endl;
-        std::getline(std::cin, str);
+        if (std::getline(std::cin, str).eof())
+            std::exit(0);
         if (str.length() == 1 && \
             '0' <= str[0] && str[0] <= '7' && \
             !cot[str[0] - '0'].is_empty())
@@ -112,8 +114,8 @@ void PhoneBook::loop()
         std::string command;
 
         std::cout << "Enter the command" << std::endl;
-        std::getline(std::cin, command);
-
+        if (std::getline(std::cin, command).eof())
+            std::exit(0);
         if (command == "ADD")
         {
             add_command();
