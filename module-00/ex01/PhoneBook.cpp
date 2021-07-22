@@ -22,6 +22,7 @@ void PhoneBook::put_contact_list() const
     int i;
 
     i = 0;
+    std::cout << "     index|first name| last name|  nickname" << std::endl;
     while (i < CONTACT_NUM && !cot[i].is_empty())
     {
         std::cout << std::setw(10) << std::right << i << "|";
@@ -123,7 +124,6 @@ void PhoneBook::loop()
         }
         else if (command == "EXIT")
         {
-            std::cout << "exit" << std::endl;
             break;
         }
     }
