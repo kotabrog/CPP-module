@@ -4,14 +4,12 @@
 #include <iostream>
 #include <string>
 
-enum Level
-{
-    debug,
-    info,
-    warning,
-    error,
-    other
-};
+#define DEBUG 0
+#define INFO 1
+#define WARNING 2
+#define ERROR 3
+#define LEVEL_NUM 4
+
 
 class Karen
 {

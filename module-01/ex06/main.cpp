@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
     }
     std::string str = argv[1];
 
-    std::string level_list[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    int level = Level::other;
-    for (int i = 0; i < 4; ++i)
+    std::string level_list[LEVEL_NUM] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int level = LEVEL_NUM;
+    for (int i = 0; i < LEVEL_NUM; ++i)
     {
         if (str == level_list[i])
         {
@@ -23,24 +23,24 @@ int main(int argc, char *argv[])
     }
     switch (level)
     {
-        case Level::debug:
+        case DEBUG:
             std::cout << "[ DEBUG ]\n";
             karen.complain("DEBUG");
             std::cout << std::endl;
-        case Level::info:
+        case INFO:
             std::cout << "[ INFO ]\n";
             karen.complain("INFO");
             std::cout << std::endl;
-        case Level::warning:
+        case WARNING:
             std::cout << "[ WARNING ]\n";
             karen.complain("WARNING");
             std::cout << std::endl;
-        case Level::error:
+        case ERROR:
             std::cout << "[ ERROR ]\n";
             karen.complain("ERROR");
             std::cout << std::endl;
             break;
-        case Level::other:
+        case LEVEL_NUM:
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
     }
 }
