@@ -11,6 +11,15 @@ This is a c++ assignment for 42.
   - ex01: class
   - ex02: Destructor, static and timestamp
 
+- module01
+  - ex00: Memory allocation
+  - ex01: Multiple memory allocation
+  - ex02: Pointer and reference
+  - ex03: Differences in the use of pointers and references
+  - ex04: File operation
+  - ex05: Function pointer
+  - ex06: Switch
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
