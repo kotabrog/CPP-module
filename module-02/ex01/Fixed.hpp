@@ -3,16 +3,13 @@
 
 #include <iostream>
 #include <climits>
+#include <cmath>
 
 class Fixed
 {
 private:
     static const int point = 8;
     int raw;
-    void intToRaw(int value);
-    void fractionToRaw(float value);
-    int rawToInt(void) const;
-    float rawToFraction(void) const;
 
 public:
     Fixed();
