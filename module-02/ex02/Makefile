@@ -3,20 +3,17 @@ SRCS	=	main.cpp\
 
 OBJS	= $(SRCS:.cpp=.o)
 NAME	= ex02
-CC		= clang++
-CFLAGS	= -Wall -Wextra -Werror
+CXX		= clang++
+CXXFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
 
 all		:	$(NAME)
 
-.cpp.o	:
-			$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
-
 $(NAME)	:	$(OBJS)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
 
 sani	:	$(OBJS)
-		$(CC) $(CFLAGS) -fsanitize=address $(OBJS) -o $(NAME)
+		$(CXX) $(CFLAGS) -fsanitize=address $(OBJS) -o $(NAME)
 
 clean	:
 			$(RM) $(OBJS)
