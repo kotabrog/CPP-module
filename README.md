@@ -20,6 +20,11 @@ This is a c++ assignment for 42.
   - ex05: Function pointer
   - ex06: Switch
 
+- module02
+  - ex00: Fixed Point Number Class and overload
+  - ex01: Continuation of ex00
+  - ex02: Continuation of ex01 and operator overloads
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
