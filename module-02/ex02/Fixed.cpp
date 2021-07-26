@@ -146,6 +146,15 @@ int Fixed::toInt(void) const
 {
     int value = raw;
     value >>= point;
+    if (value < 0)
+    {
+        int value_compair = value;
+        value_compair <<= point;
+        if (raw != value_compair)
+        {
+            value += 1;
+        }
+    }
     return value;
 }
 
