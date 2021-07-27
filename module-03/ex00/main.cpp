@@ -3,6 +3,9 @@
 int main()
 {
     ClapTrap a;
+    std::cout << "hitpoints: " << a.getHitpoints() << std::endl;
+    std::cout << "energyPoints: " << a.getEnergyPoints() << std::endl;
+    std::cout << "attackDamage: " << a.getAttackDamage() << std::endl;
     a.takeDamage(3);
     ClapTrap b(a);
     b.takeDamage(3);

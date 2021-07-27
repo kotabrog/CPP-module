@@ -3,6 +3,9 @@
 int main()
 {
     ScavTrap a;
+    std::cout << "hitpoints: " << a.getHitpoints() << std::endl;
+    std::cout << "energyPoints: " << a.getEnergyPoints() << std::endl;
+    std::cout << "attackDamage: " << a.getAttackDamage() << std::endl;
     a.takeDamage(3);
     ScavTrap b(a);
     b.takeDamage(3);
