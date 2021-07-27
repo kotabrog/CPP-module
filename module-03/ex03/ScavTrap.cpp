@@ -28,12 +28,43 @@ ScavTrap::~ScavTrap()
     std::cout << "ScavTrap destructor of " << getName() << " called" << std::endl;
 }
 
+unsigned int ScavTrap::getHitpoints(void) const
+{
+    return hitpoints;
+}
+
+unsigned int ScavTrap::getEnergyPoints(void) const
+{
+    return energyPoints;
+}
+
+unsigned int ScavTrap::getAttackDamage(void) const
+{
+    return attackDamage;
+}
+
 void ScavTrap::attack(const std::string& target)
 {
     std::cout << "ScavTrap " << getName() << \
                  " attacks " << target << \
                  ", causing " << attackDamage << \
                  " points of damage!" << std::endl;
+}
+
+void ScavTrap::takeDamage(unsigned int amount)
+{
+    hitpoints = (hitpoints < amount) ? 0 : hitpoints - amount;
+    std::cout << "ScavTrap " << getName() << \
+                 " took " << amount << \
+                 " damage, hit points to " << hitpoints << std::endl;
+}
+
+void ScavTrap::beRepaired(unsigned int amount)
+{
+    hitpoints += amount;
+    std::cout << "ScavTrap " << getName() << \
+                 " is repaired " << amount << \
+                 ", hit points to " << hitpoints << std::endl;
 }
 
 void ScavTrap::guardGate()

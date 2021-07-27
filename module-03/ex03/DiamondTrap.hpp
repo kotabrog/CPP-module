@@ -22,11 +22,13 @@ public:
 
     const std::string& getName(void) const;
     const std::string& getPairentName(void) const;
-    unsigned int getHitpoints(void) const;
-    unsigned int getEnergyPoints(void) const;
-    unsigned int getAttackDamage(void) const;
+    using FragTrap::getHitpoints;
+    using ScavTrap::getEnergyPoints;
+    using FragTrap::getAttackDamage;
 
     using ScavTrap::attack;
+    using FragTrap::takeDamage;
+    using FragTrap::beRepaired;
     void whoAmI();
 };
 

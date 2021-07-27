@@ -41,26 +41,6 @@ const std::string& DiamondTrap::getPairentName(void) const
     return this->ClapTrap::name;
 }
 
-unsigned int DiamondTrap::getHitpoints(void) const
-{
-    return this->FragTrap::hitpoints;
-}
-
-unsigned int DiamondTrap::getEnergyPoints(void) const
-{
-    return this->ScavTrap::energyPoints;
-}
-
-unsigned int DiamondTrap::getAttackDamage(void) const
-{
-    return this->FragTrap::attackDamage;
-}
-
-// void DiamondTrap::attack(const std::string& target)
-// {
-//     this->ScavTrap::attack(target);
-// }
-
 void DiamondTrap::whoAmI()
 {
     std::cout << "My name is " << name << \

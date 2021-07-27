@@ -28,12 +28,43 @@ FragTrap::~FragTrap()
     std::cout << "FragTrap destructor of " << getName() << " called" << std::endl;
 }
 
+unsigned int FragTrap::getHitpoints(void) const
+{
+    return hitpoints;
+}
+
+unsigned int FragTrap::getEnergyPoints(void) const
+{
+    return energyPoints;
+}
+
+unsigned int FragTrap::getAttackDamage(void) const
+{
+    return attackDamage;
+}
+
 void FragTrap::attack(const std::string& target)
 {
-    std::cout << "FragTrap " << getName() << \
+    std::cout << "FragTrap " << name << \
                  " attacks " << target << \
                  ", causing " << attackDamage << \
                  " points of damage!" << std::endl;
+}
+
+void FragTrap::takeDamage(unsigned int amount)
+{
+    hitpoints = (hitpoints < amount) ? 0 : hitpoints - amount;
+    std::cout << "FragTrap " << name << \
+                 " took " << amount << \
+                 " damage, hit points to " << hitpoints << std::endl;
+}
+
+void FragTrap::beRepaired(unsigned int amount)
+{
+    hitpoints += amount;
+    std::cout << "FragTrap " << name << \
+                 " is repaired " << amount << \
+                 ", hit points to " << hitpoints << std::endl;
 }
 
 void FragTrap::highFivesGuys()
