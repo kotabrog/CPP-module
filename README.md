@@ -25,6 +25,12 @@ This is a c++ assignment for 42.
   - ex01: Continuation of ex00
   - ex02: Continuation of ex01 and operator overloads
 
+- module03
+  - ex00: Creating a class (preparation for the next ex)
+  - ex01: Inheritance
+  - ex02: Inheritance (preparation for the next ex)
+  - ex03: Multiple inheritance
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)

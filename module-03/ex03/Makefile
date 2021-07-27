@@ -13,10 +13,10 @@ RM		= rm -f
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-debug	:	$(OBJS)
-		$(CXX) $(CFLAGS) -fsanitize=address -std=c++98 $(OBJS) -o $(NAME)
+debug	:
+		$(CXX) $(CXXFLAGS) -fsanitize=address -std=c++98 -Wshadow $(SRCS) -o $(NAME)
 
 clean	:
 			$(RM) $(OBJS)

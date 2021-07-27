@@ -12,10 +12,10 @@ RM		= rm -f
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+			$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 sani	:	$(OBJS)
-		$(CXX) $(CFLAGS) -fsanitize=address $(OBJS) -o $(NAME)
+		$(CXX) $(CXXFLAGS) -fsanitize=address $(OBJS) -o $(NAME)
 
 clean	:
 			$(RM) $(OBJS)
