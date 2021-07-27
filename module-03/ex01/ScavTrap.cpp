@@ -36,22 +36,6 @@ void ScavTrap::attack(const std::string& target)
                  " points of damage!" << std::endl;
 }
 
-void ScavTrap::takeDamage(unsigned int amount)
-{
-    hitpoints = (hitpoints < amount) ? 0 : hitpoints - amount;
-    std::cout << "ScavTrap " << name << \
-                 " took " << amount << \
-                 " damage, hit points to " << hitpoints << std::endl;
-}
-
-void ScavTrap::beRepaired(unsigned int amount)
-{
-    hitpoints += amount;
-    std::cout << "ScavTrap " << name << \
-                 " is repaired " << amount << \
-                 ", hit points to " << hitpoints << std::endl;
-}
-
 void ScavTrap::guardGate()
 {
     std::cout << "ScavTrap " << name << " have enterred in Gate keeper mode" << std::endl;

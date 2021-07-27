@@ -36,22 +36,6 @@ void FragTrap::attack(const std::string& target)
                  " points of damage!" << std::endl;
 }
 
-void FragTrap::takeDamage(unsigned int amount)
-{
-    hitpoints = (hitpoints < amount) ? 0 : hitpoints - amount;
-    std::cout << "FragTrap " << name << \
-                 " took " << amount << \
-                 " damage, hit points to " << hitpoints << std::endl;
-}
-
-void FragTrap::beRepaired(unsigned int amount)
-{
-    hitpoints += amount;
-    std::cout << "FragTrap " << name << \
-                 " is repaired " << amount << \
-                 ", hit points to " << hitpoints << std::endl;
-}
-
 void FragTrap::highFivesGuys()
 {
     std::cout << "FragTrap " << name << " said. Give me a high five! Please!" << std::endl;

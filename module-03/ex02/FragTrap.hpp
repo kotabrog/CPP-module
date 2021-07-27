@@ -12,8 +12,6 @@ public:
     ~FragTrap();
 
     virtual void attack(const std::string& target);
-    virtual void takeDamage(unsigned int amount);
-    virtual void beRepaired(unsigned int amount);
     void highFivesGuys(void);
 };
 
