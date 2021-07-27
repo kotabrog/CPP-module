@@ -28,6 +28,15 @@ FragTrap::~FragTrap()
     std::cout << "FragTrap destructor of " << getName() << " called" << std::endl;
 }
 
+FragTrap& FragTrap::operator=(const FragTrap& a)
+{
+    name = a.getName();
+    hitpoints = a.getHitpoints();
+    energyPoints = a.getEnergyPoints();
+    attackDamage = a.getAttackDamage();
+    return *this;
+}
+
 unsigned int FragTrap::getHitpoints(void) const
 {
     return hitpoints;

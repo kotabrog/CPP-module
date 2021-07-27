@@ -16,6 +16,8 @@ public:
     FragTrap(const FragTrap& a);
     virtual ~FragTrap();
 
+    FragTrap& operator=(const FragTrap& a);
+
     unsigned int getHitpoints(void) const;
     unsigned int getEnergyPoints(void) const;
     unsigned int getAttackDamage(void) const;

@@ -16,6 +16,8 @@ public:
     ScavTrap(const ScavTrap& a);
     virtual ~ScavTrap();
 
+    ScavTrap& operator=(const ScavTrap& a);
+
     unsigned int getHitpoints(void) const;
     unsigned int getEnergyPoints(void) const;
     unsigned int getAttackDamage(void) const;

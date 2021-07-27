@@ -28,6 +28,15 @@ ScavTrap::~ScavTrap()
     std::cout << "ScavTrap destructor of " << name << " called" << std::endl;
 }
 
+ScavTrap& ScavTrap::operator=(const ScavTrap& a)
+{
+    name = a.getName();
+    hitpoints = a.getHitpoints();
+    energyPoints = a.getEnergyPoints();
+    attackDamage = a.getAttackDamage();
+    return *this;
+}
+
 void ScavTrap::attack(const std::string& target)
 {
     std::cout << "ScavTrap " << name << \
