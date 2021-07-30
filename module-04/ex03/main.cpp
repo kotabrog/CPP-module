@@ -26,5 +26,31 @@ int main()
     delete me;
     delete src;
 
-    return 0;
+    std::cout << "---------------------" << std::endl;
+    IMateriaSource* src2 = new MateriaSource();
+    src2->learnMateria(new Ice());
+    src2->learnMateria(new Cure());
+
+    ICharacter* me2 = new Character("me2");
+    tmp = src2->createMateria("ice");
+    me2->equip(tmp);
+    tmp = src2->createMateria("a");
+    if (!tmp)
+        std::cout << "NULL" << std::endl;
+    tmp = src2->createMateria("cure");
+    me2->equip(tmp);
+    tmp = src2->createMateria("cure");
+    me2->equip(tmp);
+    tmp = src2->createMateria("cure");
+    me2->equip(tmp);
+    AMateria* tmp2 = src2->createMateria("cure");
+    me2->equip(tmp2);
+    delete tmp2;
+    me2->unequip(3);
+    delete tmp;
+    me2->use(3, *me2);
+    me2->use(2, *me2);
+    me2->use(5, *me2);
+    delete me2;
+    delete src2;
 }
