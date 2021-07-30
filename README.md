@@ -28,8 +28,14 @@ This is a c++ assignment for 42.
 - module03
   - ex00: Creating a class (preparation for the next ex)
   - ex01: Inheritance
-  - ex02: Inheritance (preparation for the next ex)
+  - ex02: Abstract class
   - ex03: Multiple inheritance
+
+- module04
+  - ex00: Polymorphism
+  - ex01: Case of having an instance of another class
+  - ex02: Inheritance (preparation for the next ex)
+  - ex03: Interface
 
 ## Author
 
