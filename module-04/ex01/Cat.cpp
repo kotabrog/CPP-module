@@ -11,7 +11,7 @@ Cat::Cat()
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
-        std::exit(1);
+        throw e;
     }
 }
 
@@ -25,7 +25,7 @@ Cat::Cat(const Cat& a)
     catch(const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
-        std::exit(1);
+        throw e;
     }
     *this = a;
 }
