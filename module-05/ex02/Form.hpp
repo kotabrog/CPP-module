@@ -15,7 +15,7 @@ private:
     const int gradeRequiredInSign;
     const int gradeRequiredInExecute;
     const std::string target;
-    virtual bool action(const Bureaucrat& executor) const = 0;
+    virtual bool action() const = 0;
 
 public:
     class GradeTooHighException : public std::exception

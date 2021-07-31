@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
@@ -83,5 +84,17 @@ int main()
         rob.execute(bru);
         std::cout << bru << std::endl;
         std::cout << rob << std::endl;
+    }
+
+    std::cout << "------------" << std::endl;
+
+    {
+        ShrubberyCreationForm shr("tag");
+        Bureaucrat bru("bru", 1);
+
+        bru.signForm(shr);
+        bru.executeForm(shr);
+        std::cout << bru << std::endl;
+        std::cout << shr << std::endl;
     }
 }

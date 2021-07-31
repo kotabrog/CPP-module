@@ -1,6 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 
-bool PresidentialPardonForm::action(const Bureaucrat&) const
+bool PresidentialPardonForm::action() const
 {
     std::cout << getTarget() << " has been pardoned by Zafod Beeblebrox" << std::endl;
     return true;

@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-bool RobotomyRequestForm::action(const Bureaucrat&) const
+bool RobotomyRequestForm::action() const
 {
     std::srand(std::clock());
     if (rand() % 2)

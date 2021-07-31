@@ -8,7 +8,7 @@
 class RobotomyRequestForm : public Form
 {
 private:
-    virtual bool action(const Bureaucrat&) const;
+    virtual bool action() const;
 
 public:
     RobotomyRequestForm();

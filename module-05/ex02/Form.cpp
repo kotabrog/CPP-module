@@ -161,7 +161,7 @@ bool Form::execute(const Bureaucrat& executor) const
     {
         return false;
     }
-    return action(executor);
+    return action();
 }
 
 std::ostream& operator<<(std::ostream& os, const Form &a)
