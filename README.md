@@ -37,6 +37,12 @@ This is a c++ assignment for 42.
   - ex02: Inheritance (preparation for the next ex)
   - ex03: Interface
 
+- module05
+  - ex00: Exception
+  - ex01: Review of the class
+  - ex02: Review of the class and exception
+  - ex03: Review of the class
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
