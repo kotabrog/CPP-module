@@ -1,11 +1,17 @@
 #include <iostream>
 #include <string>
-#include <climits>
+#include <limits>
+
+#define FLAG_CHAR 0
+#define FLAG_SPECIAL 1
+#define FLAG_INT 2
+#define FLAG_DECIMAL_ZERO 3
+#define FLAG_DECIMAL_NONZERO 4
 
 void put_exit_error(std::string str)
 {
-    std::cerr << str << std::endl;
-    std::exit(1);
+    std::cout << str << std::endl;
+    std::exit(0);
 }
 
 void put_int_to_char(int num)
@@ -26,7 +32,8 @@ void put_int_to_char(int num)
 
 void put_float_to_int_and_char(float num)
 {
-    if (num < INT_MIN || INT_MAX < num)
+    if (num < std::numeric_limits<int>::min() || \
+        std::numeric_limits<int>::max() < num)
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
@@ -40,7 +47,8 @@ void put_float_to_int_and_char(float num)
 
 void put_double_to_int_and_char(double num)
 {
-    if (num < INT_MIN || INT_MAX < num)
+    if (num < std::numeric_limits<int>::min() || \
+        std::numeric_limits<int>::max() < num)
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
@@ -52,24 +60,84 @@ void put_double_to_int_and_char(double num)
     }
 }
 
-// bool is_decimal_zero(std::string str)
-// {
+int check_numeric_and_exit(const std::string& str, int& num)
+{
+    if (str.length() == 1 && (str[0] < '0' || '9' < str[0] ))
+    {
+        return FLAG_CHAR;
+    }
 
-// }
+    if (str == "-inff" || str == "+inff" || str == "inff" || str == "nanf" || \
+        str == "-inf" || str == "+inf" || str == "inf" || str == "nan")
+    {
+        return FLAG_SPECIAL;
+    }
 
-// int check_numeric_and_exit(const std::string& str)
-// {
-//     bool dot_flag = false;
-//     for (size_t i = 0; i < str.length(); ++i)
-//     {
-//         if (str[i] == '.')
-//         {
-//             if (dot_flag)
-//                 put_exit_error(str + " can't convert.");
-//             dot_flag = true;
-//         }
-//     }
-// }
+    num = 0;
+    bool dot_flag = false;
+    int decimal_zero_flag = true;
+    bool zero_flag = false;
+    for (size_t i = 0; i < str.length(); ++i)
+    {
+        if (str[i] == '.')
+        {
+            if (dot_flag)
+            {
+                put_exit_error(str + " can't convert.");
+            }
+            dot_flag = true;
+        }
+        else if ('0' <= str[i] && str[i] <= '9')
+        {
+            if (str[i] != '0')
+            {
+                zero_flag = true;
+                if (dot_flag)
+                {
+                    decimal_zero_flag = false;
+                }
+            }
+            if (zero_flag && !dot_flag)
+            {
+                ++num;
+            }
+        }
+        else
+        {
+            if ((i == 0 && (str[i] == '-' || str[i] == '+')) || \
+                (i == str.length() - 1 && str[i] == 'f' && dot_flag))
+            {
+                continue;
+            }
+            put_exit_error(str + " can't convert.");
+        }
+    }
+    return (!dot_flag) ? FLAG_INT : decimal_zero_flag ? FLAG_DECIMAL_ZERO : FLAG_DECIMAL_NONZERO;
+}
+
+void put_double(double value, int num, int flag)
+{
+    if (num == 6 || ((flag == FLAG_DECIMAL_ZERO || flag == FLAG_INT) && num < 6))
+    {
+        std::cout << "double: " << value << ".0" << std::endl;
+    }
+    else
+    {
+        std::cout << "double: " << value << std::endl;
+    }
+}
+
+void put_float(float value, int num, int flag)
+{
+    if (num == 6 || ((flag == FLAG_DECIMAL_ZERO || flag == FLAG_INT) && num < 6))
+    {
+        std::cout << "float: " << value << ".0f" << std::endl;
+    }
+    else
+    {
+        std::cout << "float: " << value << "f" << std::endl;
+    }
+}
 
 int main(int argc, char* argv[])
 {
@@ -80,6 +148,18 @@ int main(int argc, char* argv[])
     }
 
     std::string str(argv[1]);
+    int num;
+    int flag = check_numeric_and_exit(str, num);
+
+    if (flag == FLAG_CHAR)
+    {
+        char c = str[0];
+        std::cout << "char: '" << c << "'" << std::endl;
+        std::cout << "int: " << static_cast<int>(c) << std::endl;
+        std::cout << "float: " << static_cast<float>(c) << std::endl;
+        std::cout << "double: " << static_cast<double>(c) << std::endl;
+        return 0;
+    }
 
     int int_num = 0;
     bool int_flag = false;
@@ -110,77 +190,59 @@ int main(int argc, char* argv[])
 
     if (!double_flag)
     {
-        if (str.length() != 1)
+        put_exit_error(str + " can't convert.");
+    }
+
+    if (flag == FLAG_INT)
+    {
+        if (!int_flag)
         {
-            std::cout << str << ": Can't convert." << std::endl;
-            return 0;
+            put_exit_error(str + " can't convert.");
         }
-        char c = str[0];
-        std::cout << "char: '" << c << "'" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << std::endl;
+        put_int_to_char(int_num);
+        std::cout << "int: " << int_num << std::endl;
+        put_float(static_cast<float>(int_num), num, flag);
+        put_double(static_cast<double>(int_num), num, flag);
         return 0;
     }
 
-    if (!int_flag)
+    if (str[str.length() - 1] == 'f')
     {
-        if (str[str.length() - 1] == 'f')
+        if (!float_flag)
         {
-            if (!float_flag)
-            {
-                std::cout << str << ": Can't convert." << std::endl;
-                return 0;
-            }
+            put_exit_error(str + " can't convert.");
+        }
+        if (flag == FLAG_SPECIAL)
+        {
             std::cout << "char: impossible" << std::endl;
             std::cout << "int: impossible" << std::endl;
-            std::cout << "float: " << float_num << std::endl;
+            std::cout << "float: " << float_num << "f" << std::endl;
             std::cout << "double: " << static_cast<double>(float_num) << std::endl;
             return 0;
         }
-        std::cout << "char: impossible" << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        if (!float_flag)
-        {
-            std::cout << "float: impossible" << std::endl;
-        }
-        else
-        {
-            std::cout << "float: " << static_cast<float>(double_num) << std::endl;
-        }
-        std::cout << "double: " << double_num << std::endl;
+        put_float_to_int_and_char(float_num);
+        put_float(float_num, num, flag);
+        put_double(static_cast<double>(float_num), num, flag);
         return 0;
     }
 
-    if (static_cast<int>(double_num) != int_num || \
-        str.find('.') != std::string::npos)
+    if (flag == FLAG_SPECIAL)
     {
-        if (str[str.length() - 1] == 'f')
-        {
-            if (!float_flag)
-            {
-                std::cout << str << ": Can't convert." << std::endl;
-                return 0;
-            }
-            put_float_to_int_and_char(float_num);
-            std::cout << "float: " << float_num << std::endl;
-            std::cout << "double: " << static_cast<double>(float_num) << std::endl;
-            return 0;
-        }
-        put_double_to_int_and_char(double_num);
-        if (!float_flag)
-        {
-            std::cout << "float: impossible" << std::endl;
-        }
-        else
-        {
-            std::cout << "float: " << static_cast<float>(double_num) << std::endl;
-        }
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << static_cast<float>(double_num) << "f" << std::endl;
         std::cout << "double: " << double_num << std::endl;
         return 0;
     }
-    put_int_to_char(int_num);
-    std::cout << "int: " << int_num << std::endl;
-    std::cout << "float: " << static_cast<float>(int_num) << std::endl;
-    std::cout << "double: " << static_cast<double>(int_num) << std::endl;
+    put_double_to_int_and_char(double_num);
+    if (!float_flag)
+    {
+        std::cout << "float: impossible" << std::endl;
+    }
+    else
+    {
+        put_float(static_cast<float>(double_num), num, flag);
+    }
+    put_double(double_num, num, flag);
+    return 0;
 }
