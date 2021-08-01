@@ -1,6 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
 
-bool ShrubberyCreationForm::action() const
+void ShrubberyCreationForm::action() const
 {
     std::string str = ".\n"
 "|-- Bureaucrat.cpp\n"
@@ -19,14 +19,13 @@ bool ShrubberyCreationForm::action() const
     std::ofstream ofs(getTarget() + "_shrubbery");
     if (!ofs)
     {
-        return false;
+        throw std::runtime_error("The file could not be opened.");
     }
     ofs << str;
     if (ofs.fail())
     {
-        return false;
+        throw std::runtime_error("Could not write to the file");
     }
-    return true;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()

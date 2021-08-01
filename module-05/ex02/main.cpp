@@ -5,6 +5,7 @@
 
 int main()
 {
+    std::srand(std::time(NULL));
     {
         PresidentialPardonForm pre("tag");
         Bureaucrat bru("bru", 1);
@@ -56,8 +57,8 @@ int main()
         RobotomyRequestForm rob("tag");
         Bureaucrat bru("bru", 1);
 
-        rob.beSigned(bru);
-        rob.execute(bru);
+        bru.signForm(rob);
+        bru.executeForm(rob);
         std::cout << bru << std::endl;
         std::cout << rob << std::endl;
     }
@@ -68,8 +69,8 @@ int main()
         RobotomyRequestForm rob("tag");
         Bureaucrat bru("bru", 1);
 
-        rob.beSigned(bru);
-        rob.execute(bru);
+        bru.signForm(rob);
+        bru.executeForm(rob);
         std::cout << bru << std::endl;
         std::cout << rob << std::endl;
     }
@@ -80,8 +81,8 @@ int main()
         RobotomyRequestForm rob("tag");
         Bureaucrat bru("bru", 1);
 
-        rob.beSigned(bru);
-        rob.execute(bru);
+        bru.signForm(rob);
+        bru.executeForm(rob);
         std::cout << bru << std::endl;
         std::cout << rob << std::endl;
     }

@@ -6,7 +6,7 @@
 class PresidentialPardonForm : public Form
 {
 private:
-    virtual bool action() const;
+    virtual void action() const;
 
 public:
     PresidentialPardonForm();

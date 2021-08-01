@@ -1,9 +1,8 @@
 #include "PresidentialPardonForm.hpp"
 
-bool PresidentialPardonForm::action() const
+void PresidentialPardonForm::action() const
 {
     std::cout << getTarget() << " has been pardoned by Zafod Beeblebrox" << std::endl;
-    return true;
 }
 
 PresidentialPardonForm::PresidentialPardonForm()

@@ -1,8 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 
-bool RobotomyRequestForm::action() const
+void RobotomyRequestForm::action() const
 {
-    std::srand(std::clock());
     if (rand() % 2)
     {
         std::cout << "buzz-buzz... " << getTarget() << " has been robotomized successfully" << std::endl;
@@ -11,7 +10,6 @@ bool RobotomyRequestForm::action() const
     {
         std::cout << "buzz-buzz... " << getTarget() << " has failed to make robotomized." << std::endl;
     }
-    return true;
 }
 
 RobotomyRequestForm::RobotomyRequestForm()

@@ -15,7 +15,7 @@ private:
     const int gradeRequiredInSign;
     const int gradeRequiredInExecute;
     const std::string target;
-    virtual bool action() const = 0;
+    virtual void action() const = 0;
 
 public:
     class GradeTooHighException : public std::exception
@@ -57,7 +57,7 @@ public:
     const std::string& getTarget() const;
 
     void beSigned(const Bureaucrat& b);
-    bool execute(const Bureaucrat& executor) const;
+    void execute(const Bureaucrat& executor) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Form &a);

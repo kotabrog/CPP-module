@@ -155,13 +155,17 @@ void Form::beSigned(const Bureaucrat& b)
     isSigned = true;
 }
 
-bool Form::execute(const Bureaucrat& executor) const
+void Form::execute(const Bureaucrat& executor) const
 {
-    if (!isSigned || gradeRequiredInExecute < executor.getGrade())
+    if (!isSigned)
     {
-        return false;
+        throw std::runtime_error("It hasn't been signed yet");
     }
-    return action();
+    if (gradeRequiredInExecute < executor.getGrade())
+    {
+        throw std::runtime_error("The grade is too low");
+    }
+    action();
 }
 
 std::ostream& operator<<(std::ostream& os, const Form &a)
