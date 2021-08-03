@@ -8,12 +8,6 @@
 #define FLAG_DECIMAL_ZERO 3
 #define FLAG_DECIMAL_NONZERO 4
 
-void put_exit_error(std::string str)
-{
-    std::cout << str << std::endl;
-    std::exit(0);
-}
-
 void put_int_to_char(int num)
 {
     if (' ' <= num && num <= '~')
@@ -83,7 +77,8 @@ int check_numeric_and_exit(const std::string& str, int& num)
         {
             if (dot_flag)
             {
-                put_exit_error(str + " can't convert.");
+                std::cout << str << " can't convert." << std::endl;
+                return -1;
             }
             dot_flag = true;
         }
@@ -109,7 +104,8 @@ int check_numeric_and_exit(const std::string& str, int& num)
             {
                 continue;
             }
-            put_exit_error(str + " can't convert.");
+            std::cout << str << " can't convert." << std::endl;
+            return -1;
         }
     }
     return (!dot_flag) ? FLAG_INT : decimal_zero_flag ? FLAG_DECIMAL_ZERO : FLAG_DECIMAL_NONZERO;
@@ -151,6 +147,11 @@ int main(int argc, char* argv[])
     int num;
     int flag = check_numeric_and_exit(str, num);
 
+    if (flag < 0)
+    {
+        return 0;
+    }
+
     if (flag == FLAG_CHAR)
     {
         char c = str[0];
@@ -190,14 +191,16 @@ int main(int argc, char* argv[])
 
     if (!double_flag)
     {
-        put_exit_error(str + " can't convert.");
+        std::cout << str << " can't convert." << std::endl;
+        return 0;
     }
 
     if (flag == FLAG_INT)
     {
         if (!int_flag)
         {
-            put_exit_error(str + " can't convert.");
+            std::cout << str << " can't convert." << std::endl;
+            return 0;
         }
         put_int_to_char(int_num);
         std::cout << "int: " << int_num << std::endl;
@@ -210,7 +213,8 @@ int main(int argc, char* argv[])
     {
         if (!float_flag)
         {
-            put_exit_error(str + " can't convert.");
+            std::cout << str << " can't convert." << std::endl;
+            return 0;
         }
         if (flag == FLAG_SPECIAL)
         {
