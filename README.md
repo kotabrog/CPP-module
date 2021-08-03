@@ -43,6 +43,11 @@ This is a c++ assignment for 42.
   - ex02: Review of the class and exception
   - ex03: Review of the class
 
+- module06
+  - ex00: static_cast
+  - ex01: reinterpret_cast
+  - ex02: dynamic_cast
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
