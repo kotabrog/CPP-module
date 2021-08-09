@@ -48,6 +48,11 @@ This is a c++ assignment for 42.
   - ex01: reinterpret_cast
   - ex02: dynamic_cast
 
+- module07
+  - ex00: Template function
+  - ex01: Instantiating a template
+  - ex02: Template class
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
