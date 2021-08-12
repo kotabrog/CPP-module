@@ -47,6 +47,9 @@ Span& Span::operator=(const Span& span)
     {
         throw std::runtime_error("new failed");
     }
+    delete[] array;
+    array = tmp;
+
     size = span.getSize();
     maxSize = span.getMaxSize();
     if (size < 2)
