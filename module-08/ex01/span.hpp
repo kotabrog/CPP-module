@@ -2,16 +2,14 @@
 #define SPAN_H
 
 #include <stdexcept>
+#include <set>
 #include <climits>
 
 class Span
 {
 private:
-    int* array;
-    unsigned int size;
+    std::multiset<int> multiset;
     unsigned int maxSize;
-    unsigned int shortSpan;
-    unsigned int longSpan;
 
 public:
     Span();
@@ -21,9 +19,9 @@ public:
 
     Span& operator=(const Span& span);
 
-    int getArray(unsigned int index) const;
-    unsigned int getSize() const;
+    const std::multiset<int>& getMultiset() const;
     unsigned int getMaxSize() const;
+
     unsigned int shortestSpan() const;
     unsigned int longestSpan() const;
 
@@ -32,20 +30,14 @@ public:
     template <typename InputIterator>
     void addNumber(InputIterator begin, InputIterator end)
     {
-        int count = maxSize - size;
-        for (InputIterator it = begin; it != end; ++it)
-        {
-            --count;
-            if (count < 0)
-            {
-                throw std::logic_error("Can't store any more");
-            }
-        }
+        std::size_t remain = maxSize - multiset.size();
+        std::size_t dist = std::distance(begin, end);
 
-        for (InputIterator it = begin; it != end; ++it)
+        if (remain < dist)
         {
-            addNumber(*it);
+            throw std::logic_error("Can't store any more");
         }
+        multiset.insert(begin, end);
     }
 };
 

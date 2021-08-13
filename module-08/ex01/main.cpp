@@ -89,4 +89,30 @@ int main()
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
     }
+    std::cout << "------------" << std::endl;
+    {
+        Span sp = Span(5);
+        std::vector<int> vec(5, 2);
+        try
+        {
+            sp.addNumber(vec.begin(), vec.end());
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+    }
+    std::cout << "------------" << std::endl;
+    {
+        Span sp = Span(5);
+        std::vector<int> vec(6, 2);
+        try
+        {
+            sp.addNumber(vec.begin(), vec.end());
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+    }
 }

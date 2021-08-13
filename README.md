@@ -53,6 +53,11 @@ This is a c++ assignment for 42.
   - ex01: Instantiating a template
   - ex02: Template class
 
+- module07
+  - ex00: Introduction to Templated containers, iterators, algorithms
+  - ex01: Containers
+  - ex02: Iterators
+
 ## Author
 
 [twiter](https://twitter.com/Kotabrog)
